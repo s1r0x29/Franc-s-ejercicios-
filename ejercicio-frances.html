@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Examen de Français - Interactif</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      background-color: #f4f4f4;
+    }
+    h2 {
+      color: #333;
+    }
+    input {
+      padding: 5px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .correct { color: green; }
+    .incorrect { color: red; }
+  </style>
+</head>
+<body>
+
+<h2>📝 Passé Composé</h2>
+<p>1. Nous <input id="q1"> à la plage. (aller)</p>
+<p>2. J' <input id="q2"> mes devoirs. (finir)</p>
+<p>3. Ils <input id="q3"> un documentaire. (regarder)</p>
+<p>4. Elle <input id="q4"> dans le parc. (tomber)</p>
+<p>5. Vous <input id="q5"> un thème écologique. (choisir)</p>
+
+<h2>🗣️ Impératif</h2>
+<p>1. (tu) ne pas oublier le recyclage → <input id="q6"></p>
+<p>2. (nous) faire attention à la pollution → <input id="q7"></p>
+<p>3. (vous) respecter la nature → <input id="q8"></p>
+<p>4. (tu) écouter ce podcast → <input id="q9"></p>
+<p>5. (vous) ne pas jeter les déchets → <input id="q10"></p>
+
+<h2>🌱 Vocabulaire</h2>
+<p>a. La déforestation → <input id="q11"> (1-5)</p>
+<p>b. Le tri sélectif → <input id="q12"> (1-5)</p>
+<p>c. Une espèce menacée → <input id="q13"> (1-5)</p>
+<p>d. L’énergie renouvelable → <input id="q14"> (1-5)</p>
+<p>e. Un militant → <input id="q15"> (1-5)</p>
+
+<br>
+<button onclick="corregir()">✅ Corregir</button>
+<div id="resultados"></div>
+
+<script>
+function corregir() {
+  const respuestas = [
+    { id: 'q1', r: 'sommes allés' },
+    { id: 'q2', r: 'ai fini' },
+    { id: 'q3', r: 'ont regardé' },
+    { id: 'q4', r: 'est tombée' },
+    { id: 'q5', r: 'avez choisi' },
+    { id: 'q6', r: "N’oublie pas le recyclage" },
+    { id: 'q7', r: "Faisons attention à la pollution" },
+    { id: 'q8', r: "Respectez la nature" },
+    { id: 'q9', r: "Écoute ce podcast" },
+    { id: 'q10', r: "Ne jetez pas les déchets" },
+    { id: 'q11', r: '3' },
+    { id: 'q12', r: '1' },
+    { id: 'q13', r: '5' },
+    { id: 'q14', r: '4' },
+    { id: 'q15', r: '2' },
+  ];
+
+  let output = "<h3>Resultados:</h3><ul>";
+  respuestas.forEach((item, index) => {
+    const entrada = document.getElementById(item.id).value.trim().toLowerCase();
+    const correcta = item.r.toLowerCase();
+    const estado = entrada === correcta ? "✅ <span class='correct'>Correcto</span>" : `❌ <span class='incorrect'>Incorrecto</span> (Correcto: ${item.r})`;
+    output += `<li>Pregunta ${index + 1}: ${estado}</li>`;
+  });
+  output += "</ul>";
+  document.getElementById("resultados").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
